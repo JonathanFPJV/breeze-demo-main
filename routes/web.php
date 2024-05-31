@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TareaController;
@@ -24,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tareas/{tarea}/edit', [TareaController::class, 'edit'])->name('tareas.edit');
     Route::put('/tareas/{tarea}', [TareaController::class, 'update'])->name('tareas.update');
     Route::delete('/tareas/{tarea}', [TareaController::class, 'destroy'])->name('tareas.destroy');
+    Route::resource('categorias', CategoriaController::class);
     Route::put('/tareas/{tarea}/toggle', [TareaController::class, 'toggle'])->name('tareas.toggle');
 });
 
