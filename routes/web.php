@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/tareas/{tarea}', [TareaController::class, 'update'])->name('tareas.update');
     Route::delete('/tareas/{tarea}', [TareaController::class, 'destroy'])->name('tareas.destroy');
     Route::put('/tareas/{tarea}/toggle', [TareaController::class, 'toggle'])->name('tareas.toggle');
+    Route::post('/categorias', [TareaController::class, 'storeCategoria'])->name('categorias.store');
     Route::resource('categorias', CategoriaController::class);
 });
 

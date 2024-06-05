@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tarea extends Model {
     use HasFactory;
 
-    protected $fillable = ['descripcion', 'user_id', 'completed', 'categoria_id'];
+    protected $fillable = ['descripcion', 'user_id', 'completada', 'categoria_id'];
 
     public function user() {
         return $this->belongsTo(User::class);

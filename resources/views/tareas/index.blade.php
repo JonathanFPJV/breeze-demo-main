@@ -43,6 +43,13 @@
            </select>
            <button type="submit" class="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600">Agregar</button>
        </form>
+
+       <!-- Formulario de Nueva Categoría -->
+       <form action="{{ route('categorias.store') }}" method="POST" class="flex flex-col space-y-4 mb-4">
+           @csrf
+           <input type="text" name="nombre" placeholder="Nueva categoría" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400" required>
+           <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">Agregar Categoría</button>
+       </form>
       
        <ul class="list-disc pl-5 space-y-2">
            @foreach ($tareas as $tarea)
@@ -66,6 +73,11 @@
                </li>
            @endforeach
        </ul>
+
+       <!-- Enlaces de Paginación -->
+       <div class="mt-4">
+           {{ $tareas->links() }}
+       </div>
    </div>
 </div>
 @endsection

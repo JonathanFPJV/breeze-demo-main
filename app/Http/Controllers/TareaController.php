@@ -22,7 +22,7 @@ class TareaController extends Controller {
             $query->where('completada', $request->input('completada'));
         }
  
-        $tareas = $query->where('user_id', Auth::id())->get();
+        $tareas = $query->where('user_id', Auth::id())->paginate(5);
         $categorias = Categoria::all();
  
         return view('tareas.index', compact('tareas', 'categorias'));
@@ -62,8 +62,17 @@ class TareaController extends Controller {
     }
 
     public function toggle(Tarea $tarea) {
-        $tarea->update(['completed' => !$tarea->completed]);
+        $tarea->update(['completada' => !$tarea->completada]);
         return redirect()->route('tareas.index');
+    }
+
+    public function storeCategoria(Request $request) {
+        $request->validate([
+            'nombre' => 'required|unique:categorias,nombre'
+        ]);
+
+        Categoria::create($request->all());
+        return redirect()->route('tareas.index')->with('success', 'Categoría creada con éxito.');
     }
  
 }
